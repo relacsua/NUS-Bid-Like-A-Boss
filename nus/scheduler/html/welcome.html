@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	{% load static from staticfiles %}
+	<title>NUS Bid Like A Boss! | Unofficial CORS Supplement</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="An unofficial CORS supplement.Chooses modules for you based on your mod history and mod preferences and shows graphical representation of bidding stats. Helps you to keep track of your completed modules">
+	<link href="{% static 'img/favicon.ico' %}" rel="shortcut icon">
+	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,300" rel="stylesheet" type="text/css">
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+	<link href="{% static 'css/welcome-style.css' %}" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<i id='link' class='icon-signin icon-2x'></i>
+		<h1>NUS Bid Like A Boss</h1>
+	</header>
+	<div class="wrapper">
+		<div class="contain">
+			<div class="container-fluid" id="about">
+				<h1>How to bid like a boss ?</h1>
+				<ul class="thumbnails">
+					<li class='span4'>
+						<div class="thumbnail">
+							<img src="{% static 'img/filter.png' %}">
+							<h3>Filter Search</h3>
+							<p>Filters out modules you can take based on timetable, exam, module history (pre-requisites & preclusions) and your module preferences.</p>
+							<p>Saves your precious time in choosing modules</p>
+						</div>
+					</li>
+					<li class='span4'>
+						<div class="thumbnail">
+							<img src="{% static 'img/bar-chart.png' %}">
+							<h3>Bidding Stats</h3>
+							<p>Graphical representation (instead of the difficult-to-read tables) of bidding statistics across rounds and academic years.</p>
+							<p>Helps you to make wise decision during bidding</p>
+						</div>
+					</li>
+					<li class='span4'>
+						<div class="thumbnail">
+							<img src="{% static 'img/mod-manager.png' %}">
+							<h3>Module Manager</h3>
+							<p>Overview of your module history</p>
+							<p>Helps you keep track of your University requirements such as 1000 level modules, GEM/SS modules and your overall degree requirement</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<footer>
+			<div id='web-info'>
+				<span id='author'>built by Muhammad Muneer & Muhammad Ihsan</span>
+				<span id='special-thanks'>Module Information courtesy of <a href='http://api.nusmods.com/' target='blank'> NUSMods API</a> and <a href="http://www.cors.nus.edu.sg/" target='blank'>CORS</a></span>
+			</div>
+		</footer>
+	</div>
+
+	
+	<!--scripts below-->
+	<script type="text/javascript" src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js'></script>
+	<script type="text/javascript">
+		$('#link').on('click',function(){
+			var apikey = 'cCICRaGJ1sru6R9fUZkNC';
+			var regex = new RegExp('^(.+'+ window.location.host + ')');
+			var callbackurl = regex.exec(window.location.href)[0] + "/login/auth";
+			var url = 'https://ivle.nus.edu.sg/api/login/?apikey='+apikey+'&url=' + encodeURIComponent(callbackurl);
+			window.location.href = url;
+		});
+	</script>
+	<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>

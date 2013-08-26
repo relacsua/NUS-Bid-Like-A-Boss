@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	{% load static from staticfiles %}
+	<title>NUS Bid Like A Boss! | Unofficial CORS Supplement</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,300" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Raleway:200" rel="stylesheet" type="text/css">
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+	<link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+	<link type="text/css" rel="stylesheet" href="http://cdn.jsdelivr.net/select2/3.4.1/select2.css" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<script type="text/javascript" src='{% static "js/mod_info.min.js" %}'></script>
+</head>
+<body>
+	<div id='wrapper'>
+		<!--start of header -->
+		<header>
+			<h1>NUS Scheduler</h1>
+			<div class="user-info">
+				<span id='name'>Welcome, <strong>{{Name|title}}</strong></span><br />
+				<span id='matriculation-no'>{{UserID|title}}</span><br />
+				<span id='fac'>{{Faculty|title}}</span><br /><br />
+				<a href='/logout' title='sign out'><i class='icon-home icon-large'></i></a>
+			</div>
+		</header>
+		<!--end of header-->
+		<div id="loading-msg" class="modal hide fade" tabindex="-1" role="dialog">
+			<div class="loading">
+				<i style = 'padding-top:3px'class="icon-spinner icon-spin icon-2x"></i><span>Loading your content. Please wait patiently &hellip;</span>
+			</div>
+		</div>
+		<!-- start of tab -->
+		<div class="tabbable">
+			<ul class="nav nav-tabs">
+				<li><a href="#mod-filter" data-toggle='tab'><i class='icon-filter pull-left'></i>Module Filter</a></li>
+				<li><a href="#bid-stats" data-toggle='tab'><i class='icon-bar-chart pull-left'></i>Bid Statistics</a></li>
+				<li class="active"><a href="#mod-manager" data-toggle='tab'><i class='icon-th pull-left'></i>Module Manager</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane container-fluid" id='mod-filter'>
+					<div class="row-fluid">
+						<div class='span5 info'>
+							<div class="mod-form">
+								<h4>Choose your pre-allocated modules</h4>
+								<form action='' method='get' class='form-horizontal'>
+									<div class="control-group" >
+										<label class='control-label 'for='mod-code'>Module Code</label>
+										<div class="controls">
+											<select name='mod-code' id='mod-code' class='span10'>
+												<option></option>
+											</select>
+										</div>
+									</div>
+									<div id='contain'>
+										<div class='mod-info'>
+										</div>
+										<div class="btn-add"></div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class='span7 xtra'>
+							<div class="mod-info-display span6" style='display:none'></div>
+							<div class="mod-pane span6"><table></table></div>
+						</div>
+					</div>	
+				</div>
+				<div class="tab-pane" id='bid-stats'>
+					<div class="row-fluid">
+						<div class="search-box span12">
+							<form class="form-search" id="mod-stat-search">
+								<input type="text" class="input-medium search-query" id='mod-query' placeholder='Type a Module Code'>
+								<button type="submit" class="btn btn-honey-pot-3">Search<i class='icon-search pull-right'></i></button>
+							</form>
+						</div>
+						<div class="stats-body span12"></div>
+						<div class="radio-btn span12"></div>
+					</div>
+				</div>
+				<div class="tab-pane active" id='mod-manager'>
+					<div class="row-fluid">
+						<div class="module-viewer span6">
+							<h3>Module History</h3>
+							<div id="myCarousel" class="carousel slide">
+					  			<ol class="carousel-indicators"></ol>
+					  			<!-- Carousel items -->
+					 			 <div class="carousel-inner"></div>
+					  			<!-- Carousel nav -->
+					 			<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+					  			<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+							</div>
+						</div>
+						<div class="user-mod-stat span6">
+							<h3>Module Statistics</h3>
+							<div class="gem span6">
+								<h4>General Education Module</h4>
+								<div class="progress progress-striped active stat-bar">
+									<div class="bar"></div>
+								</div>
+								<span id="info"></span>
+							</div>
+							<div class="ss span6">
+								<h4>Singapore Studies Module</h4>
+								<div class="progress progress-striped active stat-bar">
+									<div class="bar"></div>
+								</div>
+								<span id="info"></span>
+							</div>
+							<div class="thousand-lvl span12">
+								<h4>1000 level modules</h4>
+								<div class="progress progress-striped active stat-bar">
+									<div class="bar"></div>
+								</div>
+								<span id="info"></span>
+							</div>	
+							<div class="deg-completion span12">
+								<h4>Degree Completion</h4>
+								<div class="progress progress-striped active stat-bar">
+									<div class="bar"></div>
+								</div>
+								<span id="info"></span>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>	
+		</div>
+			<!-- end of tab -->
+	</div>
+	<!-- scripts below -->
+	<script type="text/javascript" src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js'></script>
+	<script type="text/javascript">$(function(){$.ajaxSetup({ cache: false });});</script>
+	<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+	<script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
+	<script type="text/javascript" src='http://cdn.jsdelivr.net/select2/3.4.1/select2.min.js'></script>
+	<script type="text/javascript" src='{% static "js/mod_bid_info_average.js" %}'></script>
+	<script type="text/javascript" src='{% static "js/form-1.js" %}'></script>
+	<script type="text/javascript" src='{% static "js/form-2.js" %}'></script>
+	<script type="text/javascript" src="{% static 'js/module_history.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/timetable.js' %}"></script>
+	<script type="text/javascript" src='{% static "js/bid_stat.js" %}'></script>
+</body>
+</html>

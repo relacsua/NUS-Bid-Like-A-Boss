@@ -1,0 +1,118 @@
+/*
+ * Header
+ ***************************************************/
+header{
+	position:relative;
+}
+
+header i{
+	position:absolute;
+	top:42px;
+	right:75px;
+	color:#ff6600;
+}
+
+header i:hover{
+	cursor:pointer;
+	padding-top: 3px;
+}
+
+header h1{
+	text-indent: -9999px;
+ 	width:1349px;
+ 	height:500px;
+ 	background: url(../img/background.png) no-repeat;
+ 	margin:auto;
+}
+
+/*
+ * Content of the page
+ ***************************************************/
+body{
+ 	font-family: 'Open Sans',sans-serif;	
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-weight:300;
+}
+
+h1 {
+	font-weight:300;
+	font-size:50px;
+	text-align:center;
+	line-height:55px;
+	text-shadow:0 1px 1px rgba(0,0,0,0.6);
+	margin-bottom:30px;
+}
+
+ul{
+	margin:0px;
+}
+
+::selection{
+ 	background: #59879F;
+	color: #fff;
+}
+
+::-moz-selection{
+ 	background: #59879F;
+	color: #fff;
+}
+
+/*
+ * Content of the page
+ ***************************************************/
+.thumbnail {
+	text-align: center;
+	border: 0;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-o-box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+.contain{
+	padding: 30px;
+	background-color: #fff;
+}
+
+.thumbnails{
+	margin-left: 0px;
+}
+
+/*
+ * Footer
+ ***************************************************/
+
+footer{
+	background: #dfdfdf;
+	height: 80px;
+	border-top: 1px solid #ccc;
+	opacity: 0.8;
+}
+
+#web-info{
+	padding-top:20px;
+}
+
+#web-info span,span a{
+	color: #AFADAD;
+	text-shadow: 1px 2px 3px #eee;
+}
+
+span a:hover{
+	text-decoration: none;
+	color:tomato;
+}
+
+
+#special-thanks{
+	margin-left: 20px;
+	float:left;
+}
+
+#author{
+	margin-right: 20px;
+	float:right;
+}
+
