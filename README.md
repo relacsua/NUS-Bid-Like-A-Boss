@@ -7,6 +7,8 @@ Created during summer holidays(AY 12/13) for an Orbital Programme organised by N
 
 Won best project under Intermediate Category :)
 
+Currently deployed in: nusbidlikeaboss.herokuapp.com
+
 Created By:
 Muhammad Muneer
 Muhammad Ihsan
